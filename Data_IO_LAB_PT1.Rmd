@@ -1,0 +1,53 @@
+---
+title: "Data_IO_LAB_PT1"
+output: html_document
+date: "2026-07-14"
+---
+
+```{r setup, include=FALSE}
+ufo_slice_6 <- read_csv("https://sisbid.github.io/Data-Wrangling/data/ufo/ufo_slice_6.csv")
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+str(ufo_slice_6)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+head(ufo_slice_6)
+```
+```{r}
+ufo_slice_7 <- read_delim("https://sisbid.github.io/Data-Wrangling/data/ufo/ufo_slice_7.txt", trim_ws = TRUE)
+```
+
+
+```{r}
+ufo_slice_7
+```
+
+
+```{r}
+ufo_slice_7 <- read_csv("https://sisbid.github.io/Data-Wrangling/data/ufo/ufo_slice_7.txt")
+```
+
+
+```{r}
+nrow(ufo_slice_6)
+```
+
+
+```{r}
+glimpse(ufo_slice_6)
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
