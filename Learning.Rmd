@@ -1,0 +1,87 @@
+```{r}
+x <- c(1,2,3,NA,5,6)
+mean(x, na.rm = TRUE)
+
+mtcars
+
+mtcars %>% pull(hp) %>% mean()
+
+ufo <- read_csv("https://sisbid.github.io/Data-Wrangling/data/ufo/ufo_data_complete.csv")
+ufo <- ufo %>% rename(duration_s = `duration (seconds)`)
+```
+
+
+```{r}
+ufo_grouped <- ufo %>% group_by(shape)
+```
+```{r}
+ufo_compare <- ufo %>%
+  group_by(shape) %>%
+  mutate(duration_shape_avg = mean(duration_s, na.rm = TRUE)) %>%
+```
+
+
+```{r}
+select(shape, duration_s, duration_shape_avg)
+```
+
+
+```{r}
+summary(ufo)
+```
+
+
+```{r}
+summarize(mean_value = mean(duration_s, na.rm = TRUE))
+```
+
+
+```{r}
+ufo %>% count(shape, wt = duration_s)
+```
+
+
+
+```{r}
+ufo %>% count(shape, sort = TRUE)
+```
+
+
+```{r}
+ufo %>% count(shape, country)
+```
+
+
+```{r}
+ufo %>% count(country)
+```
+```{r}
+wide_data <- tibble(
+  June_vacc_rate = 0.516,
+  May_vacc_rate = 0.514,
+  April_vacc_rate = 0.511
+)
+```
+
+
+```{r}
+long_data <- wide_data
+
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+

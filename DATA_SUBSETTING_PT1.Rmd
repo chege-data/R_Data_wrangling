@@ -1,0 +1,107 @@
+---
+title: "Data_Subsetting"
+output: html_document
+date: "2026-07-14"
+---
+```{r}
+ufo <- read_csv("https://sisbid.github.io/Data-Wrangling/data/ufo/ufo_data_complete.csv")
+```
+
+
+```{r}
+head(pull(ufo, country))
+```
+
+
+```{r}
+ufo %>% pull(country) %>% head()
+```
+
+
+```{r}
+head(ufo$country)
+```
+
+
+```{r}
+select(ufo, country, shape)
+```
+
+
+```{r}
+ufo %>% select(starts_with("C"))
+```
+
+
+```{r}
+ufo %>% select(ends_with("e"))
+
+```
+
+
+```{r}
+filter(ufo, `duration (seconds)` > 6000)
+```
+
+
+```{r}
+ufo %>% filter(`duration (seconds)` > 6000)
+```
+
+
+```{r}
+ufo %>% filter(country == "us")
+```
+
+
+```{r}
+ufo %>% filter(`duration (seconds)` > 6000 & country == "gb")
+```
+
+
+```{r}
+ufo %>% filter(country %
+```
+
+
+```{r}
+ufo %>% filter(country == "us" | `duration (seconds)` > 6000)
+```
+
+
+```{r}
+ufo %>% filter(country == "us" | country == "gb") %>% dim()
+```
+
+
+```{r}
+ufo %>% filter(country %in% c("us","gb") & `duration (seconds)` > 6000) %>% dim()
+```
+
+
+```{r}
+ufo %>% 
+  filter(country == "gb" & `duration (seconds)` > 6000) %>%
+  select(starts_with("c"))
+```
+
+
+```{r}
+ufo %>% select(`duration (seconds)`, starts_with("c"))
+```
+```{r}
+ufo %>% select(starts_with("c"), ends_with("e"))
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+

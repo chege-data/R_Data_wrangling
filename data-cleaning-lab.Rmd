@@ -1,0 +1,52 @@
+---
+title: "Data Cleaning lab"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+1. Read in the UFO dataset (used in the Data IO lectures) as an R object called `ufo`.
+You can read directly from the web here: https://raw.githubusercontent.com/SISBID/Module1/gh-pages/data/ufo/ufo_data_complete.csv . 
+You can ignore the "problems" with some rows. 
+
+```{r}
+ufo <- read_csv("https://raw.githubusercontent.com/SISBID/Module1/gh-pages/data/ufo/ufo_data_complete.csv")
+
+```
+
+2. Clean up the column/variable names of the `ufo` dataset to remove spaces and non-alphanumeric characters. You can use the `dplyr::rename()` function or look into the `janitor::clean_names()` function. Be sure to save the new version of the data to replacec the old!
+
+```{r}
+ufo <- clean_names(ufo)
+ufo
+
+
+```
+
+3. Filter for rows where state is "tx" or  "nm", "ut". Then use `case_when` to make a swap of "Texas" for "tx" and "New_Mexico" for "nm" and "Utah" for "ut" of the `state` variable. Save the output as `South_West`. hint- you will need `mutate`.
+
+```{r}
+Southwest <- ufo %>% filter(state %in% c("tx","nm","ut"))
+count(Southwest,state)
+Southwest <- Southwest %>% 
+  mutate(state = (case_when(state == "tx" ~ "Texas",
+                            state == "nm" ~ "New Mexico",
+                            state == "ut" ~ "Utah",
+                            .default = state)))
+
+count(Southwest,state)
+```
+
+4. Use `case_when()` to create a new variable called "continent". If the country is "ca" or "us" make the value be "North America", if it is "gb" or "de" make the value "Europe", and if it is "au" make it "Australia". No need to worry about the `.default` statement as we want to keep our other `NA` values.
+
+```{r}
+ufo <- ufo %>% 
+  mutate(continent = (case_when(country %in% c("us","ca") ~ "North America",
+                           country %in% c("gb","de") ~ "Europe",
+                            country == "au" ~ "Australia")))
+
+ufo
+```

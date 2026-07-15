@@ -1,0 +1,62 @@
+---
+title: "Data Summarization Lab"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data used
+
+Circulator Lanes Dataset: the data is from https://data.baltimorecity.gov/Transportation/Charm-City-Circulator-Ridership/wwvu-583r
+
+Available on: https://sisbid.github.io/Data-Wrangling/data/Charm_City_Circulator_Ridership.csv
+
+```{r}
+library(tidyverse)
+
+circ <- read_csv("https://sisbid.github.io/Data-Wrangling/data/Charm_City_Circulator_Ridership.csv")
+```
+
+1. Each row is a different day. How many days are in the data set?
+
+```{r q1}
+days <- count(circ)
+days
+nrows(circ)
+```
+
+2. What is the total (sum) number of boardings on the green bus (`greenBoardings` column)?
+
+```{r q2}
+##greenb <- circ %% sum(greenBoardings, na.rm = TRUE)
+
+circ %>% count(wt = greenBoardings)
+```
+
+3. Group the data by day of the week (`day`). Find the mean daily ridership (`daily` column). (hint: use `group_by` and `summarize` functions)
+
+```{r q3}
+circ %>%
+  group_by(day) %>%
+  summarize(mean_daily_ridership = mean(daily, na.rm = TRUE))
+```
+
+4. Take the median of `orangeBoardings`(use `median()`), grouping by day of the week.
+
+```{r q4}
+circ %>%
+  group_by(day) %>%
+  summarize(md = median(orangeBoardings, na.rm = TRUE))
+```
+
+## **Practice on your own**
+
+5. Group by day of the week, and then find the mean ridership `summarize(across())` all numeric columns using `where(is.numeric)`.
+
+```{r q5}
+
+```
